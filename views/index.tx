@@ -1,6 +1,16 @@
 : cascade base
 : around content -> {
-<h1><: $greeting :> <: $c.stash.site_name :></h1>
-<p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
+    <h1><: $greeting :> <: $c.stash.site_name :></h1>
+    <p>This is simple web application for management some memos.<br>
+    This appication is powerd by sinatra-ish simple Perl WAF <a href="http://search.cpan.org/~kazeburo/Kossy-0.07/lib/Kossy.pm">Kossy</a>.<br>
+    The code of Memossy is hosted on <a href="https://github.com/zoncoen/Memossy">Github repository</a>.</p>
+
+    <ul style="list-style-type: none">
+        : for $list -> $page {
+            <li>
+                <: $page.updated_at:> - <a href="<: $c.req.uri_for($page.rid) :>"><: $page.title :></a>
+            </li>
+        : }
+    </ul>
 : }
 

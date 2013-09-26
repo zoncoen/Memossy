@@ -1,0 +1,37 @@
+: cascade base
+: around content -> {
+
+    :my $is_new = ($c.req.path_info=='/new') ? 1 : 0;
+
+    <h2><: $is_new ? 'New Entry....' : 'Edit Entry....' :></h2>
+
+    : if $validator {
+         <div class="alert-error">
+         <p>System Error!</p>
+         <ul>
+             :for $validator.messages -> $message {
+                 <li><: $message :></li>
+             : }
+         </ul>
+         </div>
+     : }
+
+    : block form |  fillinform($c.req ) -> {
+    <form action="<: $is_new ? '/add' : '/edit/'~$page.rid :>" method="POST">
+        <fieldset>
+            <h4>title</h4>
+            <input name="title" size="20" value="<: $is_new ? '' : $page.title :>"></input>
+            <h4>body</h4>
+            <textarea name="body" class="input-xlarge span8" rows="15"><: !$is_new and $page.body :></textarea><br>
+            <input type="submit" value="<: $is_new ? 'Add' : 'Update' :>"/>
+            :if !$is_new{
+                <input type="reset" value="Reset"/>
+                <input type="button" value="Cancel" onClick="location.href='<: $c.req.uri_for($page.rid) :>'">
+            : }
+            :else{
+                <input type="button" value="Cancel" onClick="location.href='<: $c.req.uri_for('/') :>'">
+            : }
+        </fieldset>
+    </form>
+    : }
+: }

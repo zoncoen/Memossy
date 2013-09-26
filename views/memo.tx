@@ -1,0 +1,13 @@
+: cascade base
+: around content -> {
+    <h2><: $page.title :></h2>
+    <h4><: $page.body.replace('\n', '<br>') | raw :></h4>
+    <p>updated at <: $page.updated_at:></p>
+    <form action="<: '/edit/'~$page.rid :>" method="POST">
+        <fieldset>
+            <input type="hidden" name="title" value="delete"></input>
+            <input type="button" value="Edit" onClick="location.href='<: $c.req.uri_for('/edit/'~$page.rid) :>'">
+            <input type="submit" value="Delete"/>
+        </fieldset>
+    </form>
+: }
