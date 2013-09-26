@@ -2,9 +2,13 @@
 : around content -> {
     <h1><: $greeting :> <: $c.stash.site_name :></h1>
     <p>This is simple web application for management some memos.<br>
-    This appication is powerd by sinatra-ish simple Perl WAF <a href="http://search.cpan.org/~kazeburo/Kossy-0.07/lib/Kossy.pm">Kossy</a>.<br>
-    The code of Memossy is hosted on <a href="https://github.com/zoncoen/Memossy">Github repository</a>.</p>
+    This appication is powerd by sinatra-ish simple Perl WAF <a href="http://search.cpan.org/~kazeburo/Kossy-0.07/lib/Kossy.pm" target=”_blank”>Kossy</a>.<br>
+    The code of Memossy is hosted on <a href="https://github.com/zoncoen/Memossy" target=”_blank”>Github repository</a>.</p>
 
+    <h2>- Your memos -</h2>
+    : if !$list.size() {
+        <h5>Your memo list is empty.<br>Let's push "New" button on navigation bar and create your memo!</h5>
+    : }
     <ul style="list-style-type: none">
         : for $list -> $page {
             <li>
