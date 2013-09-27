@@ -26,7 +26,7 @@
             <input type="submit" value="<: $is_new ? 'Add' : 'Update' :>"/>
             :if !$is_new{
                 <input type="reset" value="Reset"/>
-                <input type="button" value="Cancel" onClick="location.href='<: $c.req.uri_for($page.rid) :>'">
+                <input type="button" value="Cancel"/>
             : }
             :else{
                 <input type="button" value="Cancel" onClick="location.href='<: $c.req.uri_for('/') :>'">
