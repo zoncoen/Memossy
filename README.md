@@ -7,6 +7,7 @@ Installation requirements
 -----
 - MySQL
 - Perl
+- cpanm
 - carton
 
 How to setup
@@ -18,4 +19,16 @@ $ git clone https://github.com/zoncoen/Memossy.git
 # Create MySQL database table and config file
 $ cd Memossy
 $ perl setup.pl
+
+# Install Perl CAPN module
+$ carton install
 ```
+
+How to run
+-----
+```
+# Run Memossy
+$ carton exec -- plackup app.psgi --port=5000
+```
+
+Let's accesss [http://localhost:5000/](http://localhost:5000/) on your web browser.
