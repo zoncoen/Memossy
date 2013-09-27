@@ -1,2 +1,5 @@
 # Config file
 Memossy.conf
+
+# carton module directory
+local/
